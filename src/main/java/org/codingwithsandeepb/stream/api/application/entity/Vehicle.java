@@ -1,11 +1,18 @@
-package org.codingwithsandeepb.stream.api.application;
+package org.codingwithsandeepb.stream.api.application.entity;
+
+import org.codingwithsandeepb.stream.api.application.dao.VehicleDAO;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
+import static org.codingwithsandeepb.stream.api.application.service.VehicleService.*;
+
+
 public class Vehicle {
-    private String id;
+
+    private Long id;
     private String make;
     private Integer year;
     private String model;
@@ -19,7 +26,7 @@ public class Vehicle {
         this.monthlyPaymentOptions = monthlyPaymentOptions;
     }
 
-    public Vehicle(String id, String make, Integer year, String model, String color, Double msrp, List<Integer> monthlyPaymentOptions, Transmission transmission, FuelType fuelType) {
+    public Vehicle(Long id, String make, Integer year, String model, String color, Double msrp, List<Integer> monthlyPaymentOptions, Transmission transmission, FuelType fuelType) {
         this.id = id;
         this.make = make;
         this.year = year;
@@ -66,11 +73,11 @@ public class Vehicle {
         this.color = color;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -113,12 +120,13 @@ public class Vehicle {
                 '}';
     }
 
+    /*
     public static void main(String[] args) {
 
         //sorting list of vehicles using comparator.comparing by year ascending
         System.out.println("sorting list of vehicles using comparator.comparing by year ascending \n");
 
-        List<Vehicle> vehicles = Vehicle.listOfVehicles();
+        List<Vehicle> vehicles = VehicleDAO.listOfVehicles();
         vehicles.stream()
                 .sorted(Comparator.comparing(Vehicle::getYear))
                 .collect(Collectors.toList())
@@ -282,42 +290,19 @@ public class Vehicle {
                 .collect(Collectors.toList());
         System.out.println(paymentOptionsForModelY);
 
+        vehiclesInvByYearAsc();
+        getElectricVehiclesByYearDesc("printing electric vehicles desc");
+        vehiclesInventoryByYearDesc();
 
-    }
+        fuelCellCarsByYear("fuel cell cars: \n");
 
-    private static List<Vehicle> listOfVehicles(){
+        carsWithPriceUnder25k();
+        }
+*/
 
-        List<Vehicle> vehicles = Arrays.asList(
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 2024, "4Runner TRD off-road","Dark Green",49569.99, Arrays.asList(36, 48, 60, 72, 84, 96), Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Honda", 2014, "Pilot","dark blue",19999.69, Arrays.asList(36, 48, 60, 72, 84, 96), Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "RAM", 2003, "HD 2500","shiny black",25000.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
-                new Vehicle(UUID.randomUUID().toString(), "GMC", 2013, "Denali", "pearl white",27899.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
-                new Vehicle(UUID.randomUUID().toString(), "Tesla", 2017, "Model 3", "maroon",34599.39, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
-                new Vehicle(UUID.randomUUID().toString(), "Chevrolet", 2013, "Chevrolet Silverado 1500","grey", 31255.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 2020, "Mirai", "metallic blue",38999.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
-                new Vehicle(UUID.randomUUID().toString(), "Lexus", 2017, "RX350", "black",34449.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Acura", 2015, "MDX", "red",19899.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "BMW", 2003, "M5", "yellow",14959.88, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Lexus", 2013, "GX570", "grey",35699.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Hyundai", 2019, "Nexo", "black",34566.89, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
-                new Vehicle(UUID.randomUUID().toString(), "Lexus", 2013, "GS350", "maroon",29768.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Audi", 2019, "R8", "white",145999.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 2013, "RAV4 Plugin Hybrid", "grey",65000.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.PLUGIN_HYBRID),
-                new Vehicle(UUID.randomUUID().toString(), "Mazda", 2006, "CX90", "maroon",64999.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Honda", 2021, "Clarity","wine red", 34689.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
-                new Vehicle(UUID.randomUUID().toString(), "Tesla", 2019, "Model X", "black",43249.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
-                new Vehicle(UUID.randomUUID().toString(), "Subaru", 2015, "WRX STI", "blue",32359.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 1992, "Supra", "red",100009.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Tesla", 2020, "Model S", "yellow",35688.69, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
-                new Vehicle(UUID.randomUUID().toString(), "Lexus", 2013, "Lexus ES350", "black",19567.68, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 2024, "GR Corolla", "black",55479.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Honda", 2024, "Civic TypeR", "blue",45238.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(UUID.randomUUID().toString(), "Tesla", 2023, "Model Y", "grey",45688.48, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
-                new Vehicle(UUID.randomUUID().toString(), "Nissan", 2019, "Nissan Leaf", "grey",34999.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
-                new Vehicle(UUID.randomUUID().toString(), "Ford", 2019, "F-250", "black",89880.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
-                new Vehicle(UUID.randomUUID().toString(), "Nissan", 2013, "Titan XD", "white",56745.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
-                new Vehicle(UUID.randomUUID().toString(), "Toyota", 2023, "BZ4X", "wine red",46885.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC)
-        );
-        return vehicles;
-    }
+
+
+
+
+
 }
