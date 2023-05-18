@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,11 +63,8 @@ public class VehicleService {
                         vehicle.getTransmission(),
                         vehicle.getFuelType())
                 ).collect(Collectors.toList());
-        System.out.println("printing electric cars by year desc starts here : \n ");
 
-        electricCars.stream().forEach(System.out::println);
-
-        System.out.println("printing electric cars by year desc ends here!!! \n ");
+        // electricCars.stream().forEach(System.out::println);
 
         return electricCars;
     }
@@ -113,9 +109,8 @@ public class VehicleService {
     }
 
     public static List<Vehicle> vehiclesByMake(String make){
-        if (null == make) throw new RuntimeException("cannot be null please try again later!");
-        else
-            return getVehiclesByMake(make);
+
+        return getVehiclesByMake(make);
     }
 
     private static List<Vehicle> getVehiclesByMake(String make){
@@ -218,7 +213,7 @@ public class VehicleService {
     }
 
     private static Vehicle cheapestCarByMake(String make){
-        //return
+
         Stream<Vehicle> vehicleStream = listOfVehicles().parallelStream()
                 .sorted(Comparator.comparing(Vehicle::getMsrp))
                 .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make))
