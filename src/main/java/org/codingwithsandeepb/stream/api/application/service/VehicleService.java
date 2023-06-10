@@ -289,7 +289,7 @@ public class VehicleService {
         return carsByCustomPriceRange(minPrice, maxPrice);
     }
 
-    public List<Vehicle> carsByCustomPriceRange(int minPrice, int maxPrice){
+    private List<Vehicle> carsByCustomPriceRange(int minPrice, int maxPrice){
         return listOfVehicles()
                 .stream()
                 .sorted(Comparator.comparing(Vehicle::getMsrp))
