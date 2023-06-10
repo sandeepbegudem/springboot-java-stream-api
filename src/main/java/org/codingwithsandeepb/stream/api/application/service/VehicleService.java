@@ -1,9 +1,11 @@
 package org.codingwithsandeepb.stream.api.application.service;
 
+import jakarta.el.PropertyNotFoundException;
 import org.codingwithsandeepb.stream.api.application.entity.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,8 +63,6 @@ public class VehicleService {
                         vehicle.getTransmission(),
                         vehicle.getFuelType())
                 ).collect(Collectors.toList());
-
-        // electricCars.stream().forEach(System.out::println);
 
         return electricCars;
     }
@@ -293,8 +293,21 @@ public class VehicleService {
         return listOfVehicles()
                 .stream()
                 .sorted(Comparator.comparing(Vehicle::getMsrp))
-                .filter(vehicle -> vehicle.getMsrp() >= minPrice)
-                .filter(vehicle -> vehicle.getMsrp() <=maxPrice)
+                .filter(vehicle -> vehicle.getMsrp() >= minPrice && vehicle.getMsrp() <=maxPrice)
+                .collect(Collectors.toList());
+    }
+
+    public List<Vehicle> getAllCarsByCustomPriceWithMakeAndModel(String make, String model, int minPrice, int maxPrice){
+        return retrieveCarsByCustomPriceMakeModel(make, model, minPrice, maxPrice);
+    }
+
+    private List<Vehicle> retrieveCarsByCustomPriceMakeModel(String make, String model, int minPrice, int maxPrice){
+
+        return listOfVehicles()
+                .stream()
+                .sorted(Comparator.comparing(Vehicle::getMsrp))
+                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)
+                 && vehicle.getMsrp() >= minPrice && vehicle.getMsrp() <= maxPrice)
                 .collect(Collectors.toList());
     }
 

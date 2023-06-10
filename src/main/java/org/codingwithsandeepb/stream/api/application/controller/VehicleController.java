@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class VehicleController {
@@ -91,6 +90,16 @@ public class VehicleController {
     @GetMapping("/cars-by-price-range/{minPrice}/to/{maxPrice}")
     public ResponseEntity<List<Vehicle>> carsByCustomPriceRange(@PathVariable int minPrice, @PathVariable int maxPrice){
         return new ResponseEntity<>(vehicleService.getAllCarsByPriceCustomRange(minPrice, maxPrice), HttpStatus.OK);
+    }
+
+    @GetMapping("/cars-by-custom-price-range-make-model/{make}/{model}/{minPrice}/to/{maxPrice}")
+    public ResponseEntity<List<Vehicle>> customPriceMakeAndModel(
+            @PathVariable String make,
+            @PathVariable String model,
+            @PathVariable int minPrice,
+            @PathVariable int maxPrice){
+      return new ResponseEntity<>(vehicleService.getAllCarsByCustomPriceWithMakeAndModel
+              (make, model, minPrice, maxPrice), HttpStatus.OK);
     }
 
 }
