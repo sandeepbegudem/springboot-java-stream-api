@@ -5,7 +5,6 @@ import org.codingwithsandeepb.stream.api.application.entity.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,11 +39,11 @@ public class VehicleService {
         return vehiclesByYearDesc;
     }
 
-    public static List<Vehicle> getElectricVehiclesByYearDesc(String message){
+    public static List<Vehicle> getElectricVehiclesByYearDesc(){
 
-        System.out.println(message);
         return electricVehiclesByYearDesc();
     }
+
 
     private static List<Vehicle> electricVehiclesByYearDesc(){
 
@@ -306,8 +305,10 @@ public class VehicleService {
         return listOfVehicles()
                 .stream()
                 .sorted(Comparator.comparing(Vehicle::getMsrp))
-                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)
-                 && vehicle.getMsrp() >= minPrice && vehicle.getMsrp() <= maxPrice)
+                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make)
+                        && vehicle.getModel().equalsIgnoreCase(model)
+                        && vehicle.getMsrp() >= minPrice
+                        && vehicle.getMsrp() <= maxPrice)
                 .collect(Collectors.toList());
     }
 
