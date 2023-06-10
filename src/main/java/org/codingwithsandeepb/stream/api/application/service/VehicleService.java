@@ -34,9 +34,7 @@ public class VehicleService {
         List<Vehicle> vehiclesByYearDesc = listOfVehicles().stream()
                 .sorted(Comparator.comparing(Vehicle::getYear).reversed())
                 .collect(Collectors.toList());
-        System.out.println("printing list of vehicles by year starts:  \n ");
         vehiclesByYearDesc.stream().forEach(System.out::println);
-        System.out.println("printing list of vehicles by year ends! \n ");
         return vehiclesByYearDesc;
     }
 
