@@ -12,19 +12,19 @@ public class VehicleDAO {
     public static List<Vehicle> listOfVehicles(){
 
         List<Vehicle> vehicles = Arrays.asList(
-                new Vehicle(1015242321123425432L, "Toyota", 2024, "4Runner-TRD off-road","dark-green",49569.99, Arrays.asList(36, 48, 60, 72, 84, 96), Transmission.AUTOMATIC, FuelType.GASOLINE),
+                new Vehicle(1015242321123425432L, "Toyota", 2024, "4Runner-TRD-off-road","dark-green",49569.99, Arrays.asList(36, 48, 60, 72, 84, 96), Transmission.AUTOMATIC, FuelType.GASOLINE),
                 new Vehicle(1023342212342341231L, "Honda", 2014, "Pilot","dark-blue",19999.69, Arrays.asList(36, 48, 60, 72, 84, 96), Transmission.AUTOMATIC, FuelType.GASOLINE),
                 new Vehicle(2345321322435456543L, "RAM", 2003, "HD2500","shiny-black",25000.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
                 new Vehicle(765789023423416754L, "GMC", 2013, "Denali", "pearl-white",27899.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.DIESEL),
                 new Vehicle(8976879784325432L, "Tesla", 2021, "Model-Y", "pearl-white",39768.98, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
                 new Vehicle(786546781232346543L, "Tesla", 2017, "Model-3", "maroon",34599.39, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
                 new Vehicle(4567542327342453L, "Chevrolet", 2013, "Silverado-1500","grey", 31255.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
-                new Vehicle(8976578324532345132L, "Toyota", 2020, "Mirai", "metallic blue",38999.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
+                new Vehicle(8976578324532345132L, "Toyota", 2020, "Mirai", "blue",38999.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
                 new Vehicle(987657893242654345L, "Lexus", 2017, "RX350", "black",34449.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
                 new Vehicle(8976879784325432231L, "Acura", 2015, "MDX", "red",19899.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
                 new Vehicle(657253127812123L, "Toyota", 2024, "Corolla", "grey",31549.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.HYBRID),
                 new Vehicle(8976879784343213241L, "BMW", 2003, "M5", "yellow",14959.88, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.MANUAL, FuelType.GASOLINE),
-                new Vehicle(823976879784325432L, "Tesla", 2022, "Model-Y", "wine red",40588.59, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
+                new Vehicle(823976879784325432L, "Tesla", 2022, "Model-Y", "wine-red",40588.59, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.ELECTRIC),
                 new Vehicle(23476879784325432L, "Lexus", 2013, "GX570", "grey",35699.00, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),
                 new Vehicle(56436879784325432L, "Hyundai", 2019, "Nexo", "black",34566.89, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.FUEL_CELL),
                 new Vehicle(8976823479784325432L, "Lexus", 2013, "GS350", "maroon",29768.99, Arrays.asList(36, 48, 60, 72, 84, 96),Transmission.AUTOMATIC, FuelType.GASOLINE),

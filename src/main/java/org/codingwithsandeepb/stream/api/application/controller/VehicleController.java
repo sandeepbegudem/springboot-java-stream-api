@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class VehicleController {
@@ -62,6 +63,34 @@ public class VehicleController {
     public ResponseEntity<Vehicle> cheapestCarByMake(@PathVariable String make){
 
         return new ResponseEntity<>(vehicleService.leastExpensiveModelByMake(make),HttpStatus.OK);
+    }
+
+    @GetMapping("/electric-cars-low-to-high/{make}")
+    public ResponseEntity<List<Vehicle>> electricCarsByMakePriceAsc(@PathVariable String make){
+        return new ResponseEntity<>(vehicleService.getElectricCarsByMakePriceAsc(make), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/electric-cars-high-to-low/{model}")
+    public ResponseEntity<List<Vehicle>> electricCarsByMakePriceDesc(@PathVariable String model){
+        return new ResponseEntity<>(vehicleService.getElectricCarsByMakePriceDesc(model), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/cars/monthly-payment-plans/{model}")
+    public ResponseEntity<List<Integer>> monthlyPaymentPlans(@PathVariable String model){
+        return new ResponseEntity<>(vehicleService.getMonthlyPaymentOptions(model), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/new-cars-pricing-low-to-high")
+    public ResponseEntity<List<Vehicle>> newCars(){
+        return new ResponseEntity<>(vehicleService.getAllNewCarsByPriceAsc(), HttpStatus.OK);
+    }
+
+    @GetMapping("/cars-by-price-range/{minPrice}/to/{maxPrice}")
+    public ResponseEntity<List<Vehicle>> carsByCustomPriceRange(@PathVariable int minPrice, @PathVariable int maxPrice){
+        return new ResponseEntity<>(vehicleService.getAllCarsByPriceCustomRange(minPrice, maxPrice), HttpStatus.OK);
     }
 
 }

@@ -232,6 +232,73 @@ public class VehicleService {
 
     }
 
+    public List<Vehicle> getElectricCarsByMakePriceAsc(String make){
+        return electricCarsByMakeWithPriceAsc(make);
+    }
+
+    private List<Vehicle> electricCarsByMakeWithPriceAsc(String make){
+       return listOfVehicles()
+                .stream()
+                .sorted(Comparator.comparing(Vehicle::getMsrp))
+                .filter(vehicle -> vehicle.getFuelType().equals(ELECTRIC))
+                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Vehicle> getElectricCarsByMakePriceDesc(String make){
+        return electricCarsByMakeWithPriceDesc(make);
+    }
+
+    private List<Vehicle> electricCarsByMakeWithPriceDesc(String make){
+        return listOfVehicles()
+                .stream()
+                .sorted(Comparator.comparing(Vehicle::getMsrp).reversed())
+                .filter(vehicle -> vehicle.getFuelType().equals(ELECTRIC))
+                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Integer> getMonthlyPaymentOptions(String model){
+
+        return monthlyPaymentOptions(model);
+    }
+
+    private static List<Integer> monthlyPaymentOptions(String model){
+
+        List<Integer> emiOptions = listOfVehicles()
+                .stream().filter(vehicle -> vehicle.getModel().equalsIgnoreCase(model))
+                .flatMap(vehicle -> vehicle.getMonthlyPaymentOptions().stream())
+                .collect(Collectors.toList());
+
+        return emiOptions;
+    }
+
+    public List<Vehicle> getAllNewCarsByPriceAsc(){
+        return retrieveNewCars();
+    }
+
+    private List<Vehicle> retrieveNewCars(){
+
+        return listOfVehicles()
+                .stream()
+                .sorted(Comparator.comparing(Vehicle::getMsrp))
+                .filter(vehicle -> vehicle.getYear() >= 2023)
+                .collect(Collectors.toList());
+    }
+
+    public List<Vehicle> getAllCarsByPriceCustomRange(int minPrice, int maxPrice){
+        return carsByCustomPriceRange(minPrice, maxPrice);
+    }
+
+    public List<Vehicle> carsByCustomPriceRange(int minPrice, int maxPrice){
+        return listOfVehicles()
+                .stream()
+                .sorted(Comparator.comparing(Vehicle::getMsrp))
+                .filter(vehicle -> vehicle.getMsrp() >= minPrice)
+                .filter(vehicle -> vehicle.getMsrp() <=maxPrice)
+                .collect(Collectors.toList());
+    }
 
 
 }

@@ -1,11 +1,13 @@
 package org.codingwithsandeepb.functional.programming;
 
+import javax.naming.NameNotFoundException;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NameNotFoundException {
 
         // print values of each character using a string value
         String greeting = "mynameissandeepbegudem";
@@ -19,7 +21,8 @@ public class Main {
         // find list of a characters that are repeated in a String
         String message = "iamanastronaut";
 
-        Map<String, Long> message1 = Arrays.stream(message.split("")).collect(Collectors.groupingBy(Function.identity(),
+        Map<String, Long> message1 = Arrays.stream(message.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),
                 Collectors.counting()));
 
         List<String> collect1 = message1.entrySet().stream().filter(m -> m.getValue() > 1)
@@ -49,37 +52,6 @@ public class Main {
         Optional<String> first = firstRepKey.stream().findFirst();
 
         System.out.println(first.get());
-
-
-        /*List<Vehicle> vehicles = Arrays.asList(
-        new Vehicle(UUID.randomUUID().toString(), "Toyota", 2024, "4Runner"),
-        new Vehicle(UUID.randomUUID().toString(), "Honda", 2014, "Pilot"),
-        new Vehicle(UUID.randomUUID().toString(), "Lexus", 1999, "RX350"),
-        new Vehicle(UUID.randomUUID().toString(), "Acura", 2011, "MDX"),
-        new Vehicle(UUID.randomUUID().toString(), "BMW", 2003, "M5"),
-        new Vehicle(UUID.randomUUID().toString(), "Audi", 2019, "R8"),
-        new Vehicle(UUID.randomUUID().toString(), "Mazda", 2006, "CX90"),
-        new Vehicle(UUID.randomUUID().toString(), "Subaru", 2015, "WRX STI"),
-        new Vehicle(UUID.randomUUID().toString(), "Toyota", 1992, "Supra"),
-        new Vehicle(UUID.randomUUID().toString(), "Toyota", 2024, "GR Corolla"),
-        new Vehicle(UUID.randomUUID().toString(), "Honda", 2024, "Civic TypeR"),
-        new Vehicle(UUID.randomUUID().toString(), "Genesis", 2013, "GX570")
-        );*/
-
-        // for (Vehicle v : vehicles)
-          //  System.out.println("vehicle id: "+ v.getId() + "; " + "vehicle make : "+ v.getMake() + "; description : " + v.getDescription());
-
-        // vehicles.stream().collect(Collectors.toList()).forEach(v -> System.out.println(v));
-        // System.out.println(sortByYear);
-
-       // Set<Vehicle> vehicleSet = vehicles.stream().filter(v -> v.getMake() !="Ferrari").
-        //        collect(Collectors.toSet());
-
-        //for (Vehicle vehicle : vehicleSet)
-        //    System.out.println("id :" + vehicle.getId() + "; make: " + vehicle.getMake() + "; year: " + vehicle.getYear() + "; model: " + vehicle.getDescription());
-        // System.out.println(vehicleSet);
-
-       // vehicles.stream().map(v -> v.getYear()).collect(Collectors.toList());
 
         // longest string in an array
         String [] myItems = {"backpack", "hiking-boots", "shades", "tent", "ready-to-cook-food", "water"};

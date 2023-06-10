@@ -18,7 +18,7 @@ public class Vehicle {
     private String model;
     private String color;
     private Double msrp;
-    public List<Integer> monthlyPaymentOptions;
+    private List<Integer> monthlyPaymentOptions;
     private Transmission transmission;
     private FuelType fuelType;
 
